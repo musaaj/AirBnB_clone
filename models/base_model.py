@@ -2,7 +2,7 @@
 """base module for all our modules"""
 import uuid
 from datetime import datetime
-
+import models
 
 class BaseModel:
     """base model class for all our models"""
@@ -19,7 +19,7 @@ class BaseModel:
                 if key != '__class__':
                     if key in ['created_at', 'updated_at']:
                         self.__setattr__(
-                                  key, 
+                                  key,
                                   datetime.fromisoformat(kwargs[key])
                                 )
                     else:
@@ -28,18 +28,20 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
+            models.storage.new(self)
 
     def __str__(self):
         """get string representation of this"""
         return '[{}] ({}) {}'.format(
-                  self.__class__,
+                  self.__class__.__name__,
                   self.id,
                   self.__dict__
                 )
 
     def save(self):
-         """update modification date/time of this"""
-         self.updated_at = datetime.today()
+        """update modification date/time of this"""
+        self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         """get dictionary representation of this"""
