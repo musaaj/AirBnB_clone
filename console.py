@@ -6,6 +6,10 @@ intereactive.
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
 import models
 from helper.line_parser import parse_line
 
@@ -17,7 +21,11 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
     classes = {
-            'BaseModel': BaseModel
+              'BaseModel': BaseModel,
+              'User': User,
+              'State': State,
+              'City': City,
+              'Amenity': Amenity
             }
 
     def emptyline(self):

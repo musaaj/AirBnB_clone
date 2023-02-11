@@ -2,12 +2,23 @@
 """Objects storage engine"""
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
 
 
 class FileStorage:
     """FileStorage engine"""
     __file_paths = 'file.json'
     __objects = {}
+    __classes = {
+              'User': User,
+              'BaseModel': BaseModel,
+              'State': State,
+              'City': City,
+              'Amenity': Amenity
+            }
 
     def all(self):
         """get all the objects in this engine"""
@@ -40,7 +51,7 @@ class FileStorage:
                 objects = json.load(fp)
                 fp.close()
                 self.__objects = {
-                          key: BaseModel(**value)
+                          key: self.__classes.get(key.split('.')[0])()
                           for key, value in objects.items()
                         }
         except FileNotFoundError:
