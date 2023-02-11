@@ -45,3 +45,10 @@ class FileStorage:
                         }
         except FileNotFoundError:
             pass
+
+    def get(self, id):
+        """get an object based on id"""
+        obj = self.__objects.get(id)
+        if obj:
+            return json.dumps(str(obj))
+        return False
