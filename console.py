@@ -10,6 +10,8 @@ from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import models
 from helper.line_parser import parse_line
 
@@ -25,7 +27,9 @@ class HBNBCommand(cmd.Cmd):
               'User': User,
               'State': State,
               'City': City,
-              'Amenity': Amenity
+              'Amenity': Amenity,
+              'Place': Place,
+              'Review': Review
             }
 
     def emptyline(self):
@@ -117,6 +121,19 @@ class HBNBCommand(cmd.Cmd):
         print(objects)
 
     def do_update(self, line):
+        """update attribute of an instance of a model
+
+        Args:
+            model: BaseMode|User|State|City|State|Amenity|Place|Review
+            id: id of a an instance
+            attribute: attribute to be updated
+            value: value to be assigned to @atrribue.
+            Value that contains space must be enclosed within ""
+
+        Example:
+        update User e47eu6t-464-e5d-53fe name "Musa Ibrahim"
+        """
+
         not_to_be_updated = [
                   'id',
                   'created_at',
