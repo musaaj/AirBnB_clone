@@ -48,17 +48,17 @@ class HBNBCommand(cmd.Cmd):
         else:
             print('** class doesn\'t exist **')
 
-    def do_show(self, args):
+    def do_show(self, line):
         """show an instance of a class of class name
         """
-        args = parse_line(args)
-        if not args:
+        line = parse_line(line)
+        if not line:
             print('** class name missing **')
             return False
-        if len(args) < 2:
+        if len(line) < 2:
             print('** instance id missing **')
             return False
-        class_name, id = args
+        class_name, id = line
         if class_name not in self.classes:
             print('** class doesn\'t exist **')
             return False
@@ -67,7 +67,81 @@ class HBNBCommand(cmd.Cmd):
             print('** no instance found **')
         else:
             print(obj)
-        
+
+    def do_destroy(self, line):
+        """delete an instance of class name"""
+        line = parse_line(line)
+        length = len(line)
+        if not line:
+            print('** class name missing **')
+            return False
+        if length < 2:
+            print('** instance id missing **')
+            return False
+        if line[0] not in self.classes:
+            print('** class doesn\'t exist **')
+            return False
+        if not models.storage.destroy(
+                  '{}.{}'.format(line[0], line[1])
+                ):
+            print('** no instance found **')
+
+    def do_all(self, line):
+        """prints all objects in storage based
+        or not based on a class name
+        """
+        if not line:
+            objects = [
+                      str(obj)
+                      for key, obj
+                      in models.storage.all().items()
+                    ]
+            print(objects)
+            return False
+        if line not in self.classes:
+            print('** class doesn\'t exist **')
+            return False
+        objects = [
+                  str(obj) for key, obj in
+                  models.storage.all().items()
+                  if obj.__class__.__name__ == line
+                ]
+        print(objects)
+
+    def do_update(self, line):
+        not_to_be_updated = [
+                  'id',
+                  'created_at',
+                  'updated_at'
+                ]
+        obj = None
+        if not line:
+            print('** class name missing **')
+            return False
+        line = parse_line(line)
+        length = len(line)
+        if line[0] not in self.classes:
+            print('** class doesn\'t exist **')
+            return False
+        if length < 2:
+            print('** instance id missing **')
+            return False
+        obj = models.storage.get(
+                  '{}.{}'.format(line[0], line[1])
+                )
+        if not obj:
+            print('** no instance found **')
+            return False
+        if length < 3:
+            print('** attribute name missing **')
+            return False
+        if length < 4:
+            print('** value missing **')
+            return False
+        if line[2] not in not_to_be_updated:
+            obj.__setattr__(line[2], line[3])
+            obj.save()
+
 
 
 if __name__ == '__main__':

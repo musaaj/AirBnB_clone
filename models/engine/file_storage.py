@@ -50,5 +50,15 @@ class FileStorage:
         """get an object based on id"""
         obj = self.__objects.get(id)
         if obj:
-            return json.dumps(str(obj))
+            return obj
         return False
+
+    def destroy(self, id):
+        """delete a given object from the storage"""
+        if id:
+            try:
+                return self.__objects.pop(id)
+            except KeyError:
+                return False
+        return False
+
