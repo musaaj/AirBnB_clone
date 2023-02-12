@@ -50,3 +50,12 @@ class BaseModel:
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
         return my_dict
+
+    def get_attribute_type(self, attr):
+        """get type of attribute of instance of this class"""
+        if not isinstance(attr, str):
+            return None
+        try:
+            return type(self.__getattribute__(attr))
+        except AttributeError:
+            return None

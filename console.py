@@ -196,11 +196,12 @@ class HBNBCommand(cmd.Cmd):
             print('** value missing **')
             return False
         if line[2] not in not_to_be_updated:
-            obj.__setattr__(line[2], line[3])
+            cast = obj.get_attribute_type(line[2])
+            if cast:
+                obj.__setattr__(line[2], cast(line[3]))
+            else:
+                obj.__setattr__(line[2], line[3])
             obj.save()
-
-    def do_User(self, line):
-        print(line)
 
 
 if __name__ == '__main__':
