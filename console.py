@@ -3,6 +3,7 @@
 with objects. The modules supports creating, updating,
 displaying and destroying objects. It can also work non
 intereactive.
+Authors: henok9334 & musaaj
 """
 import cmd
 from models.base_model import BaseModel
