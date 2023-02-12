@@ -5,17 +5,18 @@ def parse_line(line: str):
         line: str
 
     Description:
-        this function splits a given string by space characters or 
+        this function splits a given string by space characters or
         '"'. Characters withing 2 '"' are considered single tokens
 
     Returns: list of strings
     """
     if line and isinstance(line, str):
+        """Authors henok934 & musaaj"""
         line = line.strip()
         length = len(line)
-        token = '';
+        token = ''
         result = []
-        i = 0;
+        i = 0
         while i < length:
             if line[i] == ' ':
                 i += 1
