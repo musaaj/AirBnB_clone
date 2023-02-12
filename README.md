@@ -15,7 +15,7 @@ and destroy objects.
 - create
 ### syntax create ClassName+
 ### available ClassName BaseModel|User|State|City|Place|Amenity|Review
-### Examples :
+### Examples  :
 ``
 create BaseModel
 create Review
