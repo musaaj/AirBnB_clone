@@ -6,29 +6,29 @@ and destroy objects.
 ## How to install
 ``git clone https://github.com/musaaj/AirBnB_clone``
 
-## Usage 
-``
-./console
+## Usage  
 `` 
+./console. 
+``  
 
-## Available Commands 
-- create 
-**syntax**: ``create ClassName`` 
-**available ClassNames**: BaseModel|User|State|City|Place|Amenity|Review 
-**Examples**: 
-``bash 
-create BaseModel 
-create Review 
-`` 
-- show
-**syntax**: ``show ClassName instance_id``
+## Available Commands  
+- create  
+**syntax**: ``create ClassName``  
+**available ClassNames**: BaseModel|User|State|City|Place|Amenity|Review  
+**Examples**:  
+```bash
+create BaseModel  
+create Review  
+```
+- show 
+**syntax**: ```show ClassName instance_id```  
 **available ClassNames**: BaseModel|User|State|City|Place|Amenity|Review
 **Examples**:
-``bash
-show State i348u-89ued-388489-09903iu
-``
-- destroy
-**syntax**: ``destroy ClassName instance_id``
+```bash
+show State i348u-89ued-388489-09903iu  
+```
+- destroy  
+**syntax**: ``destroy ClassName instance_id``  
 **available ClassNames**: BaseModel|User|State|City|Place|Amenity|Review
 **Examples**:
 ``bash
