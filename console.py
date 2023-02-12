@@ -3,7 +3,6 @@
 with objects. The modules supports creating, updating,
 displaying and destroying objects. It can also work non
 intereactive.
-Authors: henok9334 & musaaj
 """
 import cmd
 from models.base_model import BaseModel
@@ -16,6 +15,7 @@ from models.review import Review
 import models
 from helper.line_parser import parse_line
 import json
+"""Authors henok934 & mussaj"""
 
 
 class HBNBCommand(cmd.Cmd):
