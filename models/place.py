@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """place module"""
 from models.base_model import BaseModel
+"""Authors henok934 & musaaj"""
 
 
 class Place(BaseModel):
