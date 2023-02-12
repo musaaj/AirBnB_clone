@@ -10,6 +10,9 @@ class User(BaseModel):
     first_name = ''
     last_name = ''
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """create an instance of user"""
-        super().__init__()
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()

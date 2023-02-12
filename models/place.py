@@ -17,6 +17,9 @@ class Place(BaseModel):
     longitude = 0.0
     amenity_ids = []
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """create instance of Place"""
-        super().__init__()
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()

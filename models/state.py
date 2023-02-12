@@ -7,7 +7,9 @@ class State(BaseModel):
     """state model"""
     name = ''
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """create instance of State"""
-        super().__init__()
-
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()

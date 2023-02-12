@@ -7,6 +7,9 @@ class Amenity(BaseModel):
     """amenity model"""
     name = ''
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """create instance of amenity"""
-        super().__init__()
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()

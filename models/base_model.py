@@ -8,7 +8,7 @@ class BaseModel:
     """base model class for all our models"""
 
     def __init__(self, *args, **kwargs):
-        """initialize object of this class
+        """initialize instance of this class
 
         Args:
             arg: variable argument, can be a list or tuple
@@ -31,7 +31,7 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """get string representation of this"""
+        """get string representation of instance of this class"""
         return '[{}] ({}) {}'.format(
                   self.__class__.__name__,
                   self.id,
@@ -39,12 +39,12 @@ class BaseModel:
                 )
 
     def save(self):
-        """update modification date/time of this"""
+        """update/modify date/time of instance of this class"""
         self.updated_at = datetime.today()
         models.storage.save()
 
     def to_dict(self):
-        """get dictionary representation of this"""
+        """get dictionary representation of instance of this class"""
         my_dict = self.__dict__.copy()
         my_dict['__class__'] = self.__class__.__name__
         my_dict['created_at'] = self.created_at.isoformat()

@@ -14,7 +14,7 @@ from models.place import Place
 from models.review import Review
 import models
 from helper.line_parser import parse_line
-
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -36,20 +36,30 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, line):
-        """Quit command to exit programm"""
+        """Quit command to exit programm
+
+        Example:
+            quit
+        """
         exit()
 
     def do_EOF(self, line):
         """Do nothing when command is not given"""
         return True
+
     def precmd(self, line):
         return line
-    
+
     def do_create(self, class_name):
         """create an instance of a class
 
         Args
-            class_name: builtin class name, eg BaseModel
+            class_name: BaseMode|User|State|City|State|Amenity|Place|Review
+
+
+        Example:
+            create User
+            create Place
         """
         if not class_name:
             print('** class name missing **')
@@ -62,6 +72,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """show an instance of a class of class name
+
+        Args:
+            class_name: BaseMode|User|State|City|State|Amenity|Place|Review
+            id: id of an instance
+
+        Example:
+            show Review e3498-3489054-3d4u3-ui923o
         """
         line = parse_line(line)
         if not line:
@@ -74,14 +91,22 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in self.classes:
             print('** class doesn\'t exist **')
             return False
-        obj = models.storage.get('{}.{}'.format(class_name,id))
+        obj = models.storage.get('{}.{}'.format(class_name, id))
         if not obj:
             print('** no instance found **')
         else:
             print(obj)
 
     def do_destroy(self, line):
-        """delete an instance of class name"""
+        """delete an instance of class name by id
+
+        Args:
+            class_name: BaseMode|User|State|City|State|Amenity|Place|Review
+            id: id of an instance
+
+        Example:
+            destroy User ude3234-349043-e348ud-388923
+        """
         line = parse_line(line)
         length = len(line)
         if not line:
@@ -97,14 +122,21 @@ class HBNBCommand(cmd.Cmd):
                   '{}.{}'.format(line[0], line[1])
                 ):
             print('** no instance found **')
+        else:
+            models.storage.save()
 
     def do_all(self, line):
         """prints all objects in storage based
         or not based on a class name
+
+        Args:
+            class_name: [optional]
+            BaseMode|User|State|City|State|Amenity|Place|Review
+
         """
         if not line:
             objects = [
-                      str(obj)
+                      json.dumps((obj.to_dict()))
                       for key, obj
                       in models.storage.all().items()
                     ]
@@ -114,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
             print('** class doesn\'t exist **')
             return False
         objects = [
-                  str(obj) for key, obj in
+                  json.dumps((obj.to_dict())) for key, obj in
                   models.storage.all().items()
                   if obj.__class__.__name__ == line
                 ]
@@ -167,6 +199,8 @@ class HBNBCommand(cmd.Cmd):
             obj.__setattr__(line[2], line[3])
             obj.save()
 
+    def do_User(self, line):
+        print(line)
 
 
 if __name__ == '__main__':
