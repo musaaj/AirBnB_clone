@@ -4,6 +4,7 @@ from unittest import TestCase
 from models.state import State
 import os
 
+
 class TestState(TestCase):
     """test State module"""
 
@@ -20,7 +21,6 @@ class TestState(TestCase):
         except FileNotFoundError:
             raise FileNotFoundError('File no found')
 
-    
     def test_object_created(self):
         """test object is created and """
         self.assertTrue(hasattr(self.state, 'name'))
@@ -34,4 +34,3 @@ class TestState(TestCase):
         new_state = State(**state_json)
         self.assertAlmostEqual(state_json, new_state.to_dict())
         self.assertTrue(os.path.isfile('file.json'))
-

@@ -90,7 +90,7 @@ class Testplace(unittest.TestCase):
         self.assertTrue(hasattr(place, "latitude"))
         self.assertEqual(type(place.latitude), float)
         self.assertEqual(place.latitude, 0.0)
- 
+
     def test_amenity_ids_attr(self):
         """
             Test Class attribute

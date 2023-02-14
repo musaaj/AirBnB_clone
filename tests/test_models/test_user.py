@@ -44,4 +44,3 @@ class TestUser(TestCase):
         self.assertTrue(user.first_name == self.user.first_name)
         self.assertTrue(user.created_at == self.user.created_at)
         self.assertTrue(str(user) == str(self.user))
-        
