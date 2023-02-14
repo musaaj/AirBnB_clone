@@ -5,7 +5,7 @@ def parse_line(line: str):
         line: str
 
     Description:
-        this function splits a given string by space characters or 
+        this function splits a given string by space characters or
         '"'. Characters withing 2 '"' are considered single tokens
 
     Returns: list of strings
@@ -13,9 +13,9 @@ def parse_line(line: str):
     if line and isinstance(line, str):
         line = line.strip()
         length = len(line)
-        token = '';
+        token = ''
         result = []
-        i = 0;
+        i = 0
         while i < length:
             if line[i] == ' ':
                 i += 1
@@ -30,10 +30,11 @@ def parse_line(line: str):
                 i += 1
             elif i < length:
                 while i < length and line[i] != ' ':
+                    if line[i] in '"':
+                        break
                     token += line[i]
                     i += 1
                 result.append(token)
-                i += 1
                 token = ''
         return result
     else:

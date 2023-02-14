@@ -4,12 +4,12 @@ It has implemented abitity to create, update, view
 and destroy objects.
 
 ## How to install
-``git clone https://github.com/musaaj/AirBnB_clone``
+`git clone https://github.com/musaaj/AirBnB_clone``
 
 ## Usage  
-`` 
+``` 
 ./console. 
-``  
+``` 
 
 ## Available Commands  
 - create  
@@ -21,7 +21,7 @@ create BaseModel
 create Review  
 ```
 - show 
-**syntax**: ```show ClassName instance_id```  
+**syntax**: ``show ClassName instance_id``  
 **available ClassNames**: BaseModel|User|State|City|Place|Amenity|Review
 **Examples**:  
 ```bash

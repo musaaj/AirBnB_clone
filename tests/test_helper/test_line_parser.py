@@ -32,5 +32,4 @@ class TestParser(TestCase):
         result = parse_line('Hi "Not closed')
         self.assertEqual(result, ['Hi', 'Not closed'])
         result = parse_line('Hello w"orld"!')
-        self.assertEqual(result, ['Hello', 'w"orld"!'])
-
+        self.assertEqual(result, ['Hello', 'w', 'orld', '!'])

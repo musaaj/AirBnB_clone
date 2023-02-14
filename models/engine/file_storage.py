@@ -76,4 +76,3 @@ class FileStorage:
             except KeyError:
                 return False
         return False
-
