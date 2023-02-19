@@ -1,0 +1,25 @@
+.places{
+  width:100%;
+	margin-top: 16px;
+}
+.places h1{
+	width:100%;
+	font-size: 30px;
+}
+.row{
+  width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	marin: 8px;
+}
+.col{
+  border: 1px solid #ff5a5f;
+	border-radius: 4px;
+	margin: 20px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
+}
+.col h2{
+  font-size: 30px;
+	text-align: center;
+}
